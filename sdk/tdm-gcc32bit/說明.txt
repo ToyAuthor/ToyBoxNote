@@ -1,0 +1,2 @@
+Windows XP 32bit
+TDM-GCC 5.1.0 (輸入 gcc --version 查到的)
