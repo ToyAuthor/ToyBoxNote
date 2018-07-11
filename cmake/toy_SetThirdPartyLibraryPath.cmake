@@ -2,20 +2,14 @@
 # The complete list of third-party libraries:"ToyBox/third-party/readme.txt"
 macro(toy_SetThirdPartyLibraryPath)
 
-	set(TOY_SDK_HEAD "${TOY_ROOT_SOURCE_DIR}/sdk/header-file" )
-
 	if(TOY_ANDROID)
 		set(TOY_SDK_PATH        "$ENV{HOME}/sdk_ndk" )
 	elseif(MSVC)
-		set(TOY_SDK_PATH        "${TOY_ROOT_SOURCE_DIR}/sdk/win7-64bit-vs2015x86" )
+		set(TOY_SDK_PATH        "D:/sdk_vc" )
 	elseif(WIN32)
-		if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-		set(TOY_SDK_PATH        "${TOY_ROOT_SOURCE_DIR}/sdk/tdm-gcc64bit" )
-		else()
-		set(TOY_SDK_PATH        "${TOY_ROOT_SOURCE_DIR}/sdk/tdm-gcc32bit" )
-		endif()
+		set(TOY_SDK_PATH        "D:/sdk" )
 	elseif(UNIX)
-		set(TOY_SDK_PATH        "${TOY_ROOT_SOURCE_DIR}/sdk/ubuntu-gcc64bit" )
+		set(TOY_SDK_PATH        "$ENV{HOME}/sdk" )
 	endif()
 
 	if(NOT EXISTS ${TOY_SDK_PATH})
@@ -26,11 +20,11 @@ macro(toy_SetThirdPartyLibraryPath)
 
 	#---------------------------------------------------------------------------
 
-	set(TOY_include_boost       "${TOY_SDK_HEAD}/boost" )
+	set(TOY_include_boost       "${TOY_SDK_PATH}/boost" )
 	set(TOY_library_boost       "${TOY_ROOT_BINARY_DIR}/third-party/boost" )
 
 
-	set(TOY_include_sfml        "${TOY_SDK_HEAD}/SFML/include" )
+	set(TOY_include_sfml        "${TOY_SDK_PATH}/SFML/include" )
 	set(TOY_library_sfml        "${TOY_SDK_PATH}/SFML/lib" )
 	set(TOY_libname_sfml_main   "sfml-main" )
 	set(TOY_libname_sfml_system "sfml-system" )
@@ -40,7 +34,7 @@ macro(toy_SetThirdPartyLibraryPath)
 	set(TOY_libname_sfml_network"sfml-network" )
 
 
-	set(TOY_include_freetype    "${TOY_SDK_HEAD}/freetype" )
+	set(TOY_include_freetype    "${TOY_SDK_PATH}/freetype" )
 	set(TOY_library_freetype    "${TOY_SDK_PATH}/freetype" )
 	set(TOY_libname_freetype    "freetype" )
 

@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8)
 set(TOY_ROOT_SOURCE_DIR ${PROJECT_SOURCE_DIR})
 set(TOY_ROOT_BINARY_DIR ${PROJECT_BINARY_DIR})
 
-include("${TOY_ROOT_SOURCE_DIR}/cmake/ToyTools.cmake" REQUIRED)
+include("${TOY_ROOT_SOURCE_DIR}/cmake/toy_IncludeTools.cmake" REQUIRED)
 toy_IncludeTools()
 
 add_subdirectory(third-party)
