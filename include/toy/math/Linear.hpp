@@ -8,21 +8,11 @@
 #include "toy/math/Vector4.hpp"
 #include "toy/math/Matrix4.hpp"
 
-
 namespace toy{
 namespace math{
 
-//-----------------3 dimension------------------start
-
-
 template <typename Type>
-inline auto CreateV3(const Type x,const Type y,const Type z)->::toy::math::Vector3<Type>
-{
-	return ::toy::math::Vector3<Type>(x,y,z);
-}
-
-template <typename Type>
-inline auto Normalize3(const ::toy::math::Vector3<Type> &t)->::toy::math::Vector3<Type>
+static inline auto Normalize3(const ::toy::math::Vector3<Type> &t)->::toy::math::Vector3<Type>
 {
 	::toy::math::Vector3<Type>    result = t;
 	result.normalize();
@@ -31,7 +21,7 @@ inline auto Normalize3(const ::toy::math::Vector3<Type> &t)->::toy::math::Vector
 }
 
 template <typename Type>
-inline auto Vector3Invert(const ::toy::math::Vector3<Type> &t)->::toy::math::Vector3<Type>
+static inline auto Vector3Invert(const ::toy::math::Vector3<Type> &t)->::toy::math::Vector3<Type>
 {
 	::toy::math::Vector3<Type>    result = t;
 	result.invert();
@@ -40,30 +30,27 @@ inline auto Vector3Invert(const ::toy::math::Vector3<Type> &t)->::toy::math::Vec
 }
 
 template <typename Type>
-inline Type Vector3Dot(const ::toy::math::Vector3<Type> &a,
-                       const ::toy::math::Vector3<Type> &b)
+static inline Type Vector3Dot( const ::toy::math::Vector3<Type> &a,
+                               const ::toy::math::Vector3<Type> &b)
 {
 	return  a.x*b.x+a.y*b.y+a.z*b.z;
 }
 
 template <typename Type>
-inline auto Vector3Cross( const ::toy::math::Vector3<Type> a,
-                          const ::toy::math::Vector3<Type> b )->::toy::math::Vector3<Type>
+static inline auto Vector3Cross( const ::toy::math::Vector3<Type> a,
+                                 const ::toy::math::Vector3<Type> b )->::toy::math::Vector3<Type>
 {
 	return ::toy::math::Vector3<Type>( a.y*b.z-a.z*b.y,
 	                                   a.z*b.x-a.x*b.z,
 	                                   a.x*b.y-a.y*b.x );
 }
 
-
-//-----------------3 dimension------------------end
-
 template <typename Type>
-inline void MakeOrtho( ::toy::math::Matrix4<Type> *mat,
-                       const Type &w,      // width
-                       const Type &h,      // height
-                       const Type &n,      // near
-                       const Type &f )     // far
+static inline void MakeOrtho( ::toy::math::Matrix4<Type> *mat,
+                              const Type &w,      // width
+                              const Type &h,      // height
+                              const Type &n,      // near
+                              const Type &f )     // far
 {
 	std::memset(mat->data,0,16*sizeof(Type));
 
@@ -75,11 +62,11 @@ inline void MakeOrtho( ::toy::math::Matrix4<Type> *mat,
 }
 
 template <typename Type>
-inline auto MakeOrtho( const Type &w,      // width
-                       const Type &h,      // height
-                       const Type &n,      // near
-                       const Type &f       // far
-                       )->::toy::math::Matrix4<Type>
+static inline auto MakeOrtho( const Type &w,      // width
+                              const Type &h,      // height
+                              const Type &n,      // near
+                              const Type &f       // far
+                              )->::toy::math::Matrix4<Type>
 {
 	::toy::math::Matrix4<Type>  mat;
 
@@ -89,11 +76,11 @@ inline auto MakeOrtho( const Type &w,      // width
 }
 
 template <typename Type>
-inline void MakePerspect( ::toy::math::Matrix4<Type> *mat,
-                          const Type &v,    // fovy
-                          const Type &a,    // aspect
-                          const Type &n,    // near
-                          const Type &f )   // far
+static inline void MakePerspect( ::toy::math::Matrix4<Type> *mat,
+                                 const Type &v,    // fovy
+                                 const Type &a,    // aspect
+                                 const Type &n,    // near
+                                 const Type &f )   // far
 {
 	std::memset(mat->data,0,16*sizeof(Type));
 
@@ -109,11 +96,11 @@ inline void MakePerspect( ::toy::math::Matrix4<Type> *mat,
 }
 
 template <typename Type>
-inline auto MakePerspect( const Type &v,    // fovy
-                          const Type &a,    // aspect
-                          const Type &n,    // near
-                          const Type &f     // far
-                          )->::toy::math::Matrix4<Type>
+static inline auto MakePerspect( const Type &v,    // fovy
+                                 const Type &a,    // aspect
+                                 const Type &n,    // near
+                                 const Type &f     // far
+                                 )->::toy::math::Matrix4<Type>
 {
 	::toy::math::Matrix4<Type>  mat;
 
@@ -123,10 +110,10 @@ inline auto MakePerspect( const Type &v,    // fovy
 }
 
 template <typename Type>
-inline void LookAt( ::toy::math::Matrix4<Type> *mat,
-                    const ::toy::math::Vector3<Type> &eye,
-                    const ::toy::math::Vector3<Type> &focus,
-                    const ::toy::math::Vector3<Type> &up)
+static inline void LookAt( ::toy::math::Matrix4<Type> *mat,
+                     const ::toy::math::Vector3<Type> &eye,
+                     const ::toy::math::Vector3<Type> &focus,
+                     const ::toy::math::Vector3<Type> &up)
 {
 	namespace temp = ::toy::math;
 
@@ -147,10 +134,10 @@ inline void LookAt( ::toy::math::Matrix4<Type> *mat,
 }
 
 template <typename Type>
-inline auto LookAt( const ::toy::math::Vector3<Type> &eye,
-                    const ::toy::math::Vector3<Type> &focus,
-                    const ::toy::math::Vector3<Type> &up
-                    )->::toy::math::Matrix4<Type>
+static inline auto LookAt( const ::toy::math::Vector3<Type> &eye,
+                           const ::toy::math::Vector3<Type> &focus,
+                           const ::toy::math::Vector3<Type> &up
+                           )->::toy::math::Matrix4<Type>
 {
 	::toy::math::Matrix4<Type>  mat;
 

@@ -4,28 +4,28 @@ namespace toy{
 
 struct ColorPrivate
 {
-	float r = 0.0f;
-	float g = 0.0f;
-	float b = 0.0f;
-	float a = 0.0f;
+	float r = float(0);
+	float g = float(0);
+	float b = float(0);
+	float a = float(0);
 };
 
-inline static float IntToFloat(uint8_t num)
+static inline float IntToFloat(uint8_t num)
 {
-	return ((float)num) / 255.0f;
+	return static_cast<float>(num) / float(255);
 }
 
-inline static uint8_t FloatToInt(float num)
+static inline uint8_t FloatToInt(float num)
 {
-	if ( num>1.0f )
+	if ( num>float(1) )
 	{
-		num = 1.0f;
+		num = float(1);
 	}
 
-	num *= 255.0f;
-	num += 0.5f;
+	num *= float(255);
+	num += float(0.5);
 
-	return (uint8_t)num;
+	return static_cast<uint8_t>(num);
 }
 
 }
@@ -52,7 +52,7 @@ _PrimaryColor::operator uint8_t()
 	return FloatToInt(_color);
 }
 
-Color::Color(const Color& bro)
+Color::Color(const Color& bro):_this(new ::toy::ColorPrivate)
 {
 	*_this = *(bro._this);
 }
@@ -120,6 +120,15 @@ void Color::data(float *r,float *g,float *b,float *a) const
 	*b = _this->b;
 	*a = _this->a;
 }
+
+void Color::red(float     color) { _this->r = color; }
+void Color::red(uint8_t   color) { _this->r = IntToFloat(color); }
+void Color::green(float   color) { _this->g = color; }
+void Color::green(uint8_t color) { _this->g = IntToFloat(color); }
+void Color::blue(float    color) { _this->b = color; }
+void Color::blue(uint8_t  color) { _this->b = IntToFloat(color); }
+void Color::alpha(float   color) { _this->a = color; }
+void Color::alpha(uint8_t color) { _this->a = IntToFloat(color); }
 
 auto Color::red() const->_PrimaryColor
 {
